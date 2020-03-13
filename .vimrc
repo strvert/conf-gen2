@@ -1,52 +1,116 @@
-set number
-
+"general setting--------------------------
+filetype plugin on
 syntax on
-colorscheme candid
-
-set nocompatible
+colorscheme gruvbox
+set background=dark
 set laststatus=2
-set laststatus
-set showmode
-set showcmd
-set ruler
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+set fileformats=unix,dos,mac
+set fileencodings=utf-8,sjis
+set autoindent
+set number
+set shortmess+=I
+"-----------------------------------------
 
-let NERDTreeShowHidden=1
+"common setting---------------------------
+set expandtab
+set ts=4
+set shiftwidth=4
+"-----------------------------------------
 
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
-nnoremap s= <C-w>=
-nnoremap sr <C-w>r
-nnoremap sh <C-w>h
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sd :q<CR>
-nnoremap sD :q!<CR>
+"general keymaps--------------------------
+nnoremap j gj
+nnoremap k gk
+"-----------------------------------------
 
-"dein Scripts-----------------------------
+"togglebool setting-----------------------
+noremap <C-b> :ToggleBool<CR>
+"-----------------------------------------
+
+"nerdtree setting-------------------------
+let g:NERDTreeWinSize = 25
+let NERDTreeShowHidden = 1
+nnoremap <C-n> :NERDTreeTabsToggle<CR>
+
+"augroup nerdtree_setting
+"    autocmd!
+"    autocmd vimenter * if !argc() | NERDTree | endif
+"    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"augroup END
+"-----------------------------------------
+
+"filetype setting-------------------------
+augroup file_extension_setting
+    autocmd!
+    autocmd BufNewFile,BufRead *.cppm set ft=cpp
+    autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
+augroup END
+
+augroup filetype_setting
+    autocmd!
+    autocmd BufRead,BufNewFile *.go setfiletype go
+    autocmd BufRead,BufNewFile *.cpp,*.c++,*.c,*.h,*hpp setfiletype cpp
+augroup END
+"-----------------------------------------
+
+"Utils setting----------------------------
+augroup utils_setting
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
+"-----------------------------------------
+
+"Neo complete-----------------------------
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#max_list = 50
+let g:neocomplete#max_keyword_width = 80
+let g:neocomplete#enable_ignore_case = 1
+highlight Pmenu ctermbg=6
+highlight PmenuSel ctermbg=3
+highlight PMenuSbar ctermbg=0
+inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
+"-----------------------------------------
+
+" Dein Scripts:
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/home/ishikawa/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/ishikawa/.vim/dein')
-  call dein#begin('/home/ishikawa/.vim/dein')
+if dein#load_state('$HOME/.vim/dein')
+  call dein#begin('$HOME/.vim/dein')
 
-  " Let dein manage dein
   " Required:
-  call dein#add('/home/ishikawa/.vim/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('$HOME/.vim/dein/repos/github.com/Shougo/dein.vim')
 
-  " Add or remove your plugins here like this:
-  " call dein#add('Shougo/neosnippet.vim')
-  " call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('itchyny/lightline.vim')
+  " complement
+  call dein#add('Shougo/neocomplete.vim')
+
+  " c/c++
+  call dein#add('bfrg/vim-cpp-modern')
+  call dein#add('rhysd/vim-clang-format')
+  call dein#add('kana/vim-operator-user')
+
+  " glsl
+  call dein#add('tikhomirov/vim-glsl')
+
+  " go
+  call dein#add('fatih/vim-go')
+
+  " file browser
   call dein#add('scrooloose/nerdtree')
+  call dein#add('Xuyuanp/nerdtree-git-plugin')
+  call dein#add('jistr/vim-nerdtree-tabs')
+  call dein#add('rking/ag.vim')
+  call dein#add('taiansu/nerdtree-ag')
+
+  " git
+  call dein#add('airblade/vim-gitgutter')
+
+  " other tools
+  call dein#add('sagarrakshe/toggle-bool')
+  call dein#add('itchyny/lightline.vim')
 
   " Required:
   call dein#end()
@@ -57,9 +121,8 @@ endif
 filetype plugin indent on
 syntax enable
 
-" If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
 
-"End dein Scripts-------------------------
+"-----------------------------------------
