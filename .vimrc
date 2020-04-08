@@ -4,6 +4,7 @@ syntax on
 colorscheme gruvbox
 set background=dark
 set laststatus=2
+set diffopt=vertical
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,sjis
 set autoindent
@@ -107,10 +108,12 @@ if dein#load_state('$HOME/.vim/dein')
 
   " git
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('tpope/vim-fugitive')
 
   " other tools
   call dein#add('sagarrakshe/toggle-bool')
   call dein#add('itchyny/lightline.vim')
+  call dein#add('will133/vim-dirdiff')
 
   " Required:
   call dein#end()
