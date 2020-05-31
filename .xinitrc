@@ -39,5 +39,6 @@ export DefaultIMModule=fcitx
 
 fcitx
 cmus
+xfce4-clipman
 
 exec i3

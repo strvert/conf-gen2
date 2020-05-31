@@ -1,5 +1,4 @@
 export ZDOTDIR=$HOME/.zconf
-export PATH=$PATH:/opt/unreal-engine/Engine/Binaries/Linux
 export PATH=$PATH:/home/strv/.local/bin
 export ZSH_LPROMPT_COLOR='blue'
 export ZSH_RPROMPT_COLOR='blue'

@@ -10,6 +10,8 @@ set fileencodings=utf-8,sjis
 set autoindent
 set number
 set shortmess+=I
+set clipboard&
+set clipboard^=unnamedplus
 "-----------------------------------------
 
 "common setting---------------------------
