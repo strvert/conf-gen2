@@ -28,7 +28,21 @@ function set_rprompt(){
 }
 add-zsh-hook precmd set_rprompt
 
-function chpwd() { ls }
+# function chpwd() { ls }
+
+function custom_cd()
+{
+    [[ $# -eq 0 ]] && pushd $HOME > /dev/null && return
+    pushd $@ > /dev/null
+    ls
+}
+alias cd=custom_cd
+
+function custom_popd()
+{
+    popd $@ > /dev/null
+}
+alias pd=custom_popd
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:default' menu select=1

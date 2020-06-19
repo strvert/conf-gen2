@@ -11,7 +11,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # screenshot
-bindsym $mod+Shift+s exec xfce4-screenshooter -r -c
+bindsym $mod+Shift+s exec deepin-screen-recorder
 
 # start a terminal
 bindsym $mod+Return exec alacritty

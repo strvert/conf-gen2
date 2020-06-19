@@ -5,7 +5,7 @@ colorscheme gruvbox
 set background=dark
 set laststatus=2
 set diffopt=vertical
-set fileformats=unix,dos,mac
+set fileformats=unix
 set fileencodings=utf-8,sjis
 set autoindent
 set number
