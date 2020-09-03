@@ -44,6 +44,7 @@ nnoremap <C-n> :NERDTreeTabsToggle<CR>
 "filetype setting-------------------------
 augroup file_extension_setting
     autocmd!
+    autocmd BufNewFile,BufRead *.cbl set ft=cpp
     autocmd BufNewFile,BufRead *.cppm set ft=cpp
     autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
 augroup END
@@ -51,7 +52,7 @@ augroup END
 augroup filetype_setting
     autocmd!
     autocmd BufRead,BufNewFile *.go setfiletype go
-    autocmd BufRead,BufNewFile *.cpp,*.c++,*.c,*.h,*hpp setfiletype cpp
+    autocmd BufRead,BufNewFile *.cpp,*.c++,*.c,*.h,*.hpp,*.cbl setfiletype cpp
 augroup END
 "-----------------------------------------
 
@@ -61,73 +62,87 @@ augroup utils_setting
 augroup END
 "-----------------------------------------
 
-"Neo complete-----------------------------
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#max_list = 50
-let g:neocomplete#max_keyword_width = 80
-let g:neocomplete#enable_ignore_case = 1
-highlight Pmenu ctermbg=6
-highlight PmenuSel ctermbg=3
-highlight PMenuSbar ctermbg=0
-inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
+"Vim LSP ---------------------------------
+"if empty(globpath(&rtp, 'autoload/lsp.vim'))
+"  finish
+"endif
+
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> <f2> <plug>(lsp-rename)
+  inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+endfunction
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
+
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 1
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
 "-----------------------------------------
 
-" Dein Scripts:
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+"QuickRun---------------------------------
+let g:quickrun_config = {
+\   "cpp/g++" : {
+\       "cmdopt" : "-std=c++20",
+\       "hook/time/enable" : 1
+\   },
+\   "_" : {
+\       "outputter/buffer/split" : ":botright 8sp",
+\       "outputter/buffer/close_on_empty" : 1,
+\       "outputter" : "quickfix",
+\       "hook/time/enable" : 1
+\   },
+\}
+"-----------------------------------------
 
-" Required:
-set runtimepath+=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
+call plug#begin('~/.vim/plugged')
 
-" Required:
-if dein#load_state('$HOME/.vim/dein')
-  call dein#begin('$HOME/.vim/dein')
+" complement
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-lsp-icons'
 
-  " Required:
-  call dein#add('$HOME/.vim/dein/repos/github.com/Shougo/dein.vim')
+" c/c++
+Plug 'bfrg/vim-cpp-modern'
+Plug 'rhysd/vim-clang-format'
+Plug 'kana/vim-operator-user'
 
-  " complement
-  call dein#add('Shougo/neocomplete.vim')
+" glsl
+Plug 'tikhomirov/vim-glsl'
 
-  " c/c++
-  call dein#add('bfrg/vim-cpp-modern')
-  call dein#add('rhysd/vim-clang-format')
-  call dein#add('kana/vim-operator-user')
+" go
+Plug 'fatih/vim-go'
 
-  " glsl
-  call dein#add('tikhomirov/vim-glsl')
+" file browser
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'rking/ag.vim'
+Plug 'taiansu/nerdtree-ag'
 
-  " go
-  call dein#add('fatih/vim-go')
+" git
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
-  " file browser
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('Xuyuanp/nerdtree-git-plugin')
-  call dein#add('jistr/vim-nerdtree-tabs')
-  call dein#add('rking/ag.vim')
-  call dein#add('taiansu/nerdtree-ag')
+" other tools
+Plug 'sagarrakshe/toggle-bool'
+Plug 'itchyny/lightline.vim'
+Plug 'will133/vim-dirdiff'
+Plug 'thinca/vim-quickrun'
+Plug 'mattn/vim-quickrunex'
+Plug 'skanehira/code2img.vim'
 
-  " git
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('tpope/vim-fugitive')
-
-  " other tools
-  call dein#add('sagarrakshe/toggle-bool')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('will133/vim-dirdiff')
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-if dein#check_install()
-  call dein#install()
-endif
+call plug#end()
 
 "-----------------------------------------

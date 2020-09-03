@@ -1,6 +1,16 @@
 export EDITORP=vim
 export PATH=$PATH:/opt/anaconda/bin
+export PATH=$PATH:/home/strv/go/bin
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+alias wine32="WINEPREFIX=~/.wine32 WINEARCH=win32 wine"
+alias winetricks32="WINEPREFIX=~/.wine32 WINEARCH=win32 winetricks"
+
+MCC_DIR="$HOME/Documents/repo/Command-Block-Assembly"
+alias mcc="$MCC_DIR/cba/bin/python $MCC_DIR/mcc.py"
 
 autoload -Uz vcs_info
 autoload -Uz colors
