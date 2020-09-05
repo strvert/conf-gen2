@@ -96,12 +96,23 @@ let g:quickrun_config = {
 \       "hook/time/enable" : 1
 \   },
 \   "_" : {
+\       "runner" : "job",
 \       "outputter/buffer/split" : ":botright 8sp",
 \       "outputter/buffer/close_on_empty" : 1,
 \       "outputter" : "quickfix",
 \       "hook/time/enable" : 1
 \   },
 \}
+"-----------------------------------------
+
+let g:code2img_theme = "monokai"
+
+"QuickFix---------------------------------
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
+augroup quickfix_commands
+    autocmd!
+    autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
+augroup END
 "-----------------------------------------
 
 call plug#begin('~/.vim/plugged')
@@ -122,7 +133,7 @@ Plug 'kana/vim-operator-user'
 Plug 'tikhomirov/vim-glsl'
 
 " go
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 
 " file browser
 Plug 'scrooloose/nerdtree'
@@ -141,6 +152,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'will133/vim-dirdiff'
 Plug 'thinca/vim-quickrun'
 Plug 'mattn/vim-quickrunex'
+Plug 'Shougo/vimproc.vim'
 Plug 'skanehira/code2img.vim'
 
 call plug#end()
