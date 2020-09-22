@@ -5,6 +5,7 @@ export PATH=$PATH:/home/strv/go/bin
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias vim='nvim'
 
 alias wine32="WINEPREFIX=~/.wine32 WINEARCH=win32 wine"
 alias winetricks32="WINEPREFIX=~/.wine32 WINEARCH=win32 winetricks"

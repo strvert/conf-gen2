@@ -29,4 +29,5 @@ au FileType qf nnoremap <silent><buffer>q :quit<CR>
 augroup quickfix_commands
     autocmd!
     autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
+    autocmd QuickFixCmdPost make,grep,grepadd.vimgrep copen
 augroup END

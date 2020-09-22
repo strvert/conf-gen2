@@ -9,3 +9,5 @@ source $HOME/.config/nvim/denite.vim
 source $HOME/.config/nvim/gitgutter.vim
 source $HOME/.config/nvim/lightline.vim
 source $HOME/.config/nvim/vim_cmake.vim
+source $HOME/.config/nvim/silicon.vim
+source $HOME/.config/nvim/vim_crates.vim

@@ -25,6 +25,8 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+Plug 'rust-lang/rust.vim'
+Plug 'mhinz/vim-crates'
 
 Plug 'sagarrakshe/toggle-bool'
 Plug 'itchyny/lightline.vim'
@@ -33,6 +35,7 @@ Plug 'thinca/vim-quickrun'
 Plug 'mattn/vim-quickrunex'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'skywind3000/asyncrun.vim'
+Plug 'segeljakt/vim-silicon'
 
 Plug 'kristijanhusak/defx-icons'
 Plug 'ryanoasis/vim-devicons'
