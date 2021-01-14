@@ -10,7 +10,6 @@ if uname -r | grep -i 'microsoft' > /dev/null; then
 else
 fi
 
-
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim='nvim'
@@ -37,8 +36,8 @@ autoload -Uz add-zsh-hook
 function set_prompt(){
 }
 add-zsh-hook precmd set_prompt
+
 function set_rprompt(){
-    vcs_info
 }
 add-zsh-hook precmd set_rprompt
 
@@ -70,3 +69,18 @@ setopt hist_ignore_dups
 setopt correct
 bindkey -v
 
+# autoload -Uz add-zle-hook-widget
+# function zhook(){
+#     var=${BUFFER}
+#     BUFFER=''
+#
+#     for ((i=0; i<${#var}; i++ )); do
+#         echo -en '\x1b[38;5;'${i}'m'
+#         BUFFER+=${var:$i:1}
+#     done
+#     #CURSOR=$(echo -n ${BUFFER} | wc -m)
+#     CURSOR=${#BUFFER};
+#     #zle redisplay
+# }
+# zle -N zhook
+# add-zle-hook-widget line-pre-redraw zhook
