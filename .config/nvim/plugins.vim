@@ -3,13 +3,10 @@ call plug#begin('~/.vim/plugged')
 
 command! -nargs=* T vsplit | terminal <args>
 
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'mattn/vim-lsp-icons'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'bfrg/vim-cpp-modern'
+" Plug 'bfrg/vim-cpp-modern'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'rhysd/vim-clang-format'
 Plug 'kana/vim-operator-user'
 
