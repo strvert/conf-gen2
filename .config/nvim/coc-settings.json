@@ -1,4 +1,16 @@
 {
     "clangd.semanticHighlighting": true,
-    "clangd.fallbackFlags": [ "-std=c++17" ]
+    "clangd.fallbackFlags": [ "-std=c++20" ],
+    "html.autoClosingTags": true,
+
+    "explorer.icon.enableNerdfont": true,
+    "explorer.width": 22,
+    "explorer.keyMappings.global": {
+        "l": "noop",
+        "h": "noop",
+        "v": "open:vsplit",
+        "s": "open:split",
+        "n": "addFile",
+        "N": "addDirectory"
+    }
 }

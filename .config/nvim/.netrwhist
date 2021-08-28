@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/strv/repo/packet_filter/src'
+let g:netrw_dirhist_5='/home/strv/.config/nvim'
 let g:netrw_dirhist_4='/home/strv/.config/alacritty'
 let g:netrw_dirhist_3='/home/strv/.config/nvim'
 let g:netrw_dirhist_2='/home/strv/Documents/repo/tiff/inc'

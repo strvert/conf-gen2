@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 command! -nargs=* T vsplit | terminal <args>
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lervag/vimtex'
 
 " Plug 'bfrg/vim-cpp-modern'
 Plug 'jackguo380/vim-lsp-cxx-highlight'

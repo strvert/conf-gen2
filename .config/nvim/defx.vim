@@ -1,9 +1,9 @@
-autocmd FileType defx call s:defx_my_settings()
-autocmd VimEnter * execute 'Defx'
-autocmd BufWritePost * call defx#redraw()
-autocmd BufEnter * call defx#redraw()
+" autocmd FileType defx call s:defx_my_settings()
+" autocmd VimEnter * execute 'Defx'
+" autocmd BufWritePost * call defx#redraw()
+" autocmd BufEnter * call defx#redraw()
 
-nnoremap <silent> <C-n> :<C-u> Defx <CR>
+" nnoremap <silent> <C-n> :<C-u> Defx <CR>
 
 call defx#custom#option('_', {
       \ 'winwidth': 23,
