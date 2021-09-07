@@ -10,3 +10,8 @@ augroup filetype_setting
     autocmd BufRead,BufNewFile *.go setfiletype go
     autocmd BufRead,BufNewFile *.cpp,*.c++,*.c,*.h,*.hpp,*.cbl setfiletype cpp
 augroup END
+
+augroup filetype_indent
+    autocmd!
+    autocmd BufNewFile,BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END

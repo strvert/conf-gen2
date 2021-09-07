@@ -20,6 +20,7 @@ set shiftwidth=4
 
 nnoremap j gj
 nnoremap k gk
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 
 augroup utils_setting
     autocmd BufWritePre * :%s/\s\+$//e
